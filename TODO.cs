@@ -1,9 +1,10 @@
 using System.Reflection.Metadata;
-
+////Might possibly use so menu shows up and then disapears depending on person choices
 //do
 //{
 //    //Intro to program
 //    Console.WriteLine("Hello!");
+////need a continue
 //    Console.WriteLine("");
 //    Console.WriteLine("What do you want to do?");
 //    Console.WriteLine("[S]ee all todos");
@@ -12,6 +13,9 @@ using System.Reflection.Metadata;
 //    Console.WriteLine("[E]xit");
 //} while(userMenuChoice != inputChoice);
 
+List<string> todoList = new List<string>();
+
+//Console.WriteLine(todoList.Count);
 
 //Intro to program
 Console.WriteLine("Hello!");
@@ -28,7 +32,8 @@ string userMenuChoice = Console.ReadLine();
 TodoMenuChoices(userMenuChoice);
 
 
-//all the methods nees to return strings
+////all the methods need to return strings
+////For some reason switch doesn't work had to use if/esle instead
 //string TodoMenuChoices(string userMenuChoice)
 //{
 //    switch (userMenuChoice)
@@ -55,15 +60,15 @@ string TodoMenuChoices(string userMenuChoice)
 {
     if (userMenuChoice == "S" || userMenuChoice == "s")
     {
-        Console.WriteLine("Displaying all todos.");
+        //Console.WriteLine("Displaying all todos.");
         return SeeAllTodo();
     }
-    else if(userMenuChoice == "A" || userMenuChoice == "a")
+    else if (userMenuChoice == "A" || userMenuChoice == "a")
     {
         Console.WriteLine("Added a todo.");
-        return SeeAllTodo(); 
+        return SeeAllTodo();
     }
-    else if(userMenuChoice == "R" || userMenuChoice == "r")
+    else if (userMenuChoice == "R" || userMenuChoice == "r")
     {
         Console.WriteLine("Removing a todo.");
         return RemoveTodo();
@@ -77,10 +82,38 @@ string TodoMenuChoices(string userMenuChoice)
     return "Invalid option. Please choose S, A, R, or E.";
 }
 
-// Placeholder methods
+////Example of how to ping to method and return something
+//List<string> todoList = new List<string> { "1", "2", "3" };
+
+//string SeeAllTodo(List<string> todoList)
+//{
+//    if (todoList.Count > 0)
+//    {
+//        return "if statement works";
+//    }
+//    return "else works";
+//}
+
+//string result = SeeAllTodo(todoList);
+//Console.WriteLine(result);
+
+
+//Placeholder methods
 string SeeAllTodo()
 {
+    if (todoList.Count == 0)
+    {
+        return "Nothing to Display.";
+
+    }
+    for (int i = 0; todoList.Count > 0; ++i)
+    {
+        int todoNUmber = 1;
+        string singleTodo = todoList[i];
+        return todoNUmber + " " + singleTodo;
+    }
     return "Displaying all todos.";
+
     //return insertVaribaleForAllTodos;
 }
 
