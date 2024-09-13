@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 ////Might possibly use so menu shows up and then disapears depending on person choices
 //do
 //{
@@ -14,6 +13,8 @@ using System.Reflection.Metadata;
 //} while(userMenuChoice != inputChoice);
 
 List<string> todoList = new List<string>();
+//List<string> todoList = new List<string> { "1", "2", "3" };
+
 
 //Console.WriteLine(todoList.Count);
 
@@ -61,12 +62,12 @@ string TodoMenuChoices(string userMenuChoice)
     if (userMenuChoice == "S" || userMenuChoice == "s")
     {
         //Console.WriteLine("Displaying all todos.");
-        return SeeAllTodo();
+        return SeeAllTodo(todoList);
     }
     else if (userMenuChoice == "A" || userMenuChoice == "a")
     {
         Console.WriteLine("Added a todo.");
-        return SeeAllTodo();
+        return AddTodo();
     }
     else if (userMenuChoice == "R" || userMenuChoice == "r")
     {
@@ -82,52 +83,39 @@ string TodoMenuChoices(string userMenuChoice)
     return "Invalid option. Please choose S, A, R, or E.";
 }
 
-////Example of how to ping to method and return something
-//List<string> todoList = new List<string> { "1", "2", "3" };
-
-//string SeeAllTodo(List<string> todoList)
-//{
-//    if (todoList.Count > 0)
-//    {
-//        return "if statement works";
-//    }
-//    return "else works";
-//}
-
-//string result = SeeAllTodo(todoList);
-//Console.WriteLine(result);
-
-
-//Placeholder methods
-string SeeAllTodo()
+//Todo Read fetch requests methods
+string SeeAllTodo(List<string> todoList)
 {
-    if (todoList.Count == 0)
+    if (todoList.Count > 0)
     {
-        return "Nothing to Display.";
-
+        return "if statement works";
     }
-    for (int i = 0; todoList.Count > 0; ++i)
-    {
-        int todoNUmber = 1;
-        string singleTodo = todoList[i];
-        return todoNUmber + " " + singleTodo;
-    }
-    return "Displaying all todos.";
-
-    //return insertVaribaleForAllTodos;
+    return "else works";
 }
+
+string SeeAllResult = SeeAllTodo(todoList);
+Console.WriteLine(SeeAllResult);
 
 string AddTodo()
 {
-    return "Adding a todo.";    
-    //return "Adding" + insertVaribaleToBeAdded;
+    if()
+    {
+
+    }
+    return "Adding a todo.";
 }
+
+//string addResult = AddTodo(todoList);
+//Console.WriteLine(addResult);
 
 string RemoveTodo()
 {
-    return "Removing a todo.";    
+    return "Removing a todo.";
     //return "Removing" + insertVaribaleToBeDeleted;
 }
+
+//string removeResult = RemoveTodo(todoList);
+//Console.WriteLine(removeResult);
 
 string Exit()
 {
