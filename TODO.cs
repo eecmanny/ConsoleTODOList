@@ -49,22 +49,29 @@ string SeeAllTodo(List<string> todoList)
     {
         return "There are no todos.";
     }
+    //Empty string and 0 count to keep track of of Todos
+    string todoResults = "";
+    int todoCount = 0;
+    foreach (string todo in todoList)
+    {
+        todoCount++;
+        //todoResults keeps track of which todo and description, loops through and strings them together
+        //\n put the next todo on the next console line
+        todoResults += $"Todo {todoCount}: {todo}\n";
 
-    //string result = "Here are your todos:\n";
-    //foreach (string todo in todoList)
-    //{
-    //    result += todo + "\n";
-    //}
-    //return result;
-    return "total goes here";
+    }
+    //return has to be on the outside of the for each loop so it can conintue looping without stopping until the end
+    return todoResults;
 }
 
 
 //string AddTodo(List<string> todoList)
 string AddTodo(List<string> todoList)
 {
+    Console.WriteLine("Please add add a todo");
     string userAddTodo = Console.ReadLine();
     todoList.Add(userAddTodo);
+    Console.WriteLine($"{userAddTodo} was succfully added.");
     return userAddTodo;
 }
 
