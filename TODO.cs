@@ -1,12 +1,15 @@
-//List<string> todoList = new List<string>();
-List<string> todoList = new List<string> { "T1", "T2", "T3" };
+List<string> todoList = new List<string>();
+//List<string> todoList = new List<string> { "T1", "T2", "T3" };
+bool exitProgram = false;
+
 
 //Intro to program
 Console.WriteLine("Hello!");
 Console.WriteLine("");
 
 //why is this true by default
-while(true)
+//reference bool to exit while loop but doesn't manipulate data
+while (!exitProgram)
 {
     Console.WriteLine("What do you want to do?");
     Console.WriteLine("[S]ee all todos");
@@ -18,29 +21,15 @@ while(true)
 
     //executes TodoMenuChoices method
     //Need to pass through 2 parameter to work
-    string userPickedResults = TodoMenuChoices(userMenuChoice, todoList);
+    string userPickedResults = TodoMenuChoices(userMenuChoice, todoList, ref exitProgram);
     // You need this to see what is returns from the switch statment 
     Console.WriteLine(userPickedResults);
 
 }
 
-    //Console.WriteLine("What do you want to do?");
-    //Console.WriteLine("[S]ee all todos");
-    //Console.WriteLine("[A]dd a todo");
-    //Console.WriteLine("[R]emove a todo");
-    //Console.WriteLine("[E]xit");
-
-    //string userMenuChoice = Console.ReadLine();
-
-    ////executes TodoMenuChoices method
-    ////Need to pass through 2 parameter to work
-    //string userPickedResults = TodoMenuChoices(userMenuChoice, todoList);
-    //// You need this to see what is returns from the switch statment 
-    //Console.WriteLine(userPickedResults);
-
-
 //all the methods need to return strings
-string TodoMenuChoices(string userPickedResults, List<string> todoList)
+//reference bool to exit while loop but doesn't manipulate data
+string TodoMenuChoices(string userPickedResults, List<string> todoList, ref bool exitProgram)
 {
     switch (userPickedResults)
     {
@@ -55,6 +44,7 @@ string TodoMenuChoices(string userPickedResults, List<string> todoList)
             return RemoveTodo(todoList);
         case "E":
         case "e":
+            exitProgram = true;
             return Exit();
         default:
             return "Invalid option. Please choose S, A, R, or E.";
@@ -86,7 +76,6 @@ string SeeAllTodo(List<string> todoList)
 }
 
 
-//string AddTodo(List<string> todoList)
 string AddTodo(List<string> todoList)
 {
     Console.WriteLine("Please add add a todo");
@@ -99,8 +88,12 @@ string AddTodo(List<string> todoList)
 
 string RemoveTodo(List<string> todoList)
 {
-    return "Removing a todo.";
-    //return "Removing" + insertVaribaleToBeDeleted;
+    Console.WriteLine("Which todo number would you like to remove.");
+    string userRemoveTodo = Console.ReadLine();
+    int userRemoveTodoIndex = int.Parse(userRemoveTodo);
+    todoList.RemoveAt(userRemoveTodoIndex - 1);
+
+    return "Remove Successfull";
 }
 
 
