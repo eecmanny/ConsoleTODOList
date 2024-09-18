@@ -1,5 +1,5 @@
-List<string> todoList = new List<string>();
-//List<string> todoList = new List<string> { "T1", "T2", "T3" };
+//List<string> todoList = new List<string>();
+List<string> todoList = new List<string> { "Test1", "Test2", "Test3", "Test4", "Test5" };
 bool exitProgram = false;
 
 
@@ -11,6 +11,7 @@ Console.WriteLine("");
 //reference bool to exit while loop but doesn't manipulate data
 while (!exitProgram)
 {
+    Console.WriteLine("");
     Console.WriteLine("What do you want to do?");
     Console.WriteLine("[S]ee all todos");
     Console.WriteLine("[A]dd a todo");
@@ -52,7 +53,6 @@ string TodoMenuChoices(string userPickedResults, List<string> todoList, ref bool
 }
 
 //Todo Read fetch requests methods
-//string SeeAllTodo(List<string> todoList)
 string SeeAllTodo(List<string> todoList)
 {
 
@@ -75,25 +75,66 @@ string SeeAllTodo(List<string> todoList)
     return todoResults;
 }
 
-
+//foreach loops through list for todos
+//if statement makes sure no duplicates
 string AddTodo(List<string> todoList)
 {
     Console.WriteLine("Please add add a todo");
     string userAddTodo = Console.ReadLine();
+
+    foreach (string todo in todoList)
+    {
+        if (todo == userAddTodo)
+        {
+            return "This todo already exists";
+        }
+    }
     todoList.Add(userAddTodo);
-    Console.WriteLine($"{userAddTodo} was succfully added.");
+    Console.WriteLine($"{userAddTodo} was successfully  added.");
     return userAddTodo;
 }
 
 
+//This is a faster way of doing it because we aren't using a loop.
+////The AddTodo method now uses todoList.Contains() to check if a todo already exists.
+//string AddTodo(List<string> todoList)
+//{
+//    Console.WriteLine("Please add a todo");
+//    string userAddTodo = Console.ReadLine();
+
+//    if (todoList.Contains(userAddTodo))
+//    {
+//        return "This todo already exists.";
+//    }
+
+//    todoList.Add(userAddTodo);
+//    return $"{userAddTodo} was successfully added.";
+//}
+
+
 string RemoveTodo(List<string> todoList)
 {
+    if (todoList.Count == 0)
+    {
+        return "Nothing to remove";
+    }
     Console.WriteLine("Which todo number would you like to remove.");
     string userRemoveTodo = Console.ReadLine();
     int userRemoveTodoIndex = int.Parse(userRemoveTodo);
+    // Validate the user's input to ensure it's within the valid range
+
+    if (userRemoveTodoIndex < 1 || userRemoveTodoIndex > todoList.Count)
+    {
+        return "Invalid todo number.";
+    }
+
+    //The variable removedTodo stores the todo that is about to be removed,
+    //ensuring that you still have access to it after it's removed from the list.
+    //The subtraction of 1 from userRemoveTodoIndex converts the user's input (which is 1-based) to the list’s zero-based index.
+    string removedTodo = todoList[userRemoveTodoIndex - 1];
     todoList.RemoveAt(userRemoveTodoIndex - 1);
 
-    return "Remove Successfull";
+    return $"Successfully removed {removedTodo}.";
 }
 
 
